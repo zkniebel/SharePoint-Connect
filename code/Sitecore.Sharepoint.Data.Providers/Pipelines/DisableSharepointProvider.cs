@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace Sitecore.Sharepoint.Data.Providers.Pipelines
 {
   using System.Linq;
@@ -33,35 +35,29 @@ namespace Sitecore.Sharepoint.Data.Providers.Pipelines
       args.CustomData["SharepointDisabler"] = new IntegrationDisabler();
     }
 
-    /// <summary>
-    /// Clear IsSharepointItem field for published items and enable SharepointProvider.
-    /// </summary>
-    /// <param name="args">The args   .</param>
-    public void Clear([NotNull] PublishItemContext args)
-    {
-      Assert.ArgumentNotNull(args, "args");
-
-      if (args.VersionToPublish != null)
-      {
-        var item = args.PublishHelper.GetTargetItem(args.VersionToPublish.ID);
-        if (item != null && item.Fields.FirstOrDefault(field => field.ID == SharepointFieldIDs.IsIntegrationItem) != null)
+        /// <summary>
+        /// Clear IsSharepointItem field for published items and enable SharepointProvider.
+        /// </summary>
+        /// <param name="args">The args   .</param>
+        public void Clear(PublishItemContext args)
         {
-          using (new EditContext(item))
-          {
-            new CheckboxField(item.Fields[SharepointFieldIDs.IsIntegrationItem]).Checked = false;
-          }
+            Assert.ArgumentNotNull((object)args, nameof(args));
+            if (args.VersionToPublish != null)
+            {
+                Item targetItem = args.PublishHelper.GetTargetItem(args.VersionToPublish.ID);
+                if (targetItem != null && targetItem.Fields.FirstOrDefault<Field>((Func<Field, bool>)(field => field.ID == Sitecore.Sharepoint.Common.FieldIDs.IsIntegrationItem)) != null)
+                {
+                    using (new EditContext(targetItem, false, false))
+                        new CheckboxField(targetItem.Fields[Sitecore.Sharepoint.Common.FieldIDs.IsIntegrationItem]).Checked = false;
+                }
+            }
+            if (args.CustomData["SharepointDisabler"] == null)
+                return;
+            IntegrationDisabler integrationDisabler = args.CustomData["SharepointDisabler"] as IntegrationDisabler;
+            if (integrationDisabler == null)
+                return;
+            args.CustomData["SharepointDisabler"] = (object)null;
+            integrationDisabler.Dispose();
         }
-      }
-
-      if (args.CustomData["SharepointDisabler"] != null)
-      {
-        var disabler = args.CustomData["SharepointDisabler"] as IntegrationDisabler;
-        if (disabler != null)
-        {
-          args.CustomData["SharepointDisabler"] = null;
-          disabler.Dispose();
-        }
-      }
     }
-  }
 }

@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Microsoft.SharePoint.Client;
+
 namespace Sitecore.Sharepoint.Common.Authentication.Workflows
 {
   using System;
@@ -31,18 +33,15 @@ namespace Sitecore.Sharepoint.Common.Authentication.Workflows
     }
 
     [NotNull]
-    public override CookieContainer GetAuthenticationCookies([NotNull] string url, [NotNull] NetworkCredential credential)
+    public override CookieContainer GetAuthenticationCookies(
+        string url,
+        NetworkCredential credential)
     {
-      Assert.ArgumentNotNull(url, "url");
-      Assert.ArgumentNotNull(credential, "credential");
-
-      var serverUri = new Uri(url);
-      var authenticationCookie = this.sharePointOnlineCredentialsWrapper.GetAuthenticationCookie(serverUri, credential);
-
-      var cookieContainer = new CookieContainer();
-      cookieContainer.SetCookies(serverUri, authenticationCookie);
-
-      return cookieContainer;
+        Uri uri = new Uri(url);
+        string authenticationCookie = new SharePointOnlineCredentials(credential.UserName, credential.SecurePassword).GetAuthenticationCookie(uri);
+        CookieContainer cookieContainer = new CookieContainer();
+        cookieContainer.SetCookies(uri, authenticationCookie);
+        return cookieContainer;
     }
-  }
+    }
 }

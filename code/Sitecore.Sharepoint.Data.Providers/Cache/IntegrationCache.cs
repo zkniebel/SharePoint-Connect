@@ -189,7 +189,7 @@
     /// </returns>
     protected CacheableIntegrationItemInfo DoGetIntegrationItemInfo(ID integrationItemID)
     {
-      CacheableIntegrationItemInfo info = GetObject(ItemPrefix + integrationItemID) as CacheableIntegrationItemInfo;
+      CacheableIntegrationItemInfo info = this.InnerCache[ItemPrefix + integrationItemID] as CacheableIntegrationItemInfo;
       return info;
     }
 
@@ -202,9 +202,8 @@
     /// <returns>
     /// Integration configuration data from the cache.
     /// </returns>
-    protected CacheableIntegrationConfigData DoGetIntegrationConfigData(ID itemID)
-    {
-      CacheableIntegrationConfigData info = GetObject(FolderPrefix + itemID) as CacheableIntegrationConfigData;
+    protected CacheableIntegrationConfigData DoGetIntegrationConfigData(ID itemID) {
+      CacheableIntegrationConfigData info = this.InnerCache[FolderPrefix + itemID] as CacheableIntegrationConfigData;
       return info;
     }
 

@@ -34,22 +34,25 @@ namespace Sitecore.Sharepoint.Common.Caches
 
     public virtual CookieContainer GetUnexpired(string url, NetworkCredential credential)
     {
-      Assert.ArgumentNotNull(url, "url");
-      Assert.ArgumentNotNull(credential, "credential");
+        Assert.ArgumentNotNull(url, "url");
+        Assert.ArgumentNotNull(credential, "credential");
+        try {
+            string key = this.GetKey(url, credential);
+            var ret = (Tuple<CookieContainer, DateTime>)this.InnerCache[key];
+            if (ret != null)
+            {
+                if (ret.Item2 > DateTime.Now)
+                {
+                    return ret.Item1;
+                }
 
-      string key = this.GetKey(url, credential);
-      var ret = (Tuple<CookieContainer, DateTime>)this.GetObject(key);
-      if (ret != null)
-      {
-        if (ret.Item2 > DateTime.Now)
-        {
-          return ret.Item1;
+                this.Remove(key);
+            }
         }
-
-        this.Remove(key);
-      }
-
-      return null;
+        catch (Exception e) {
+            return null;
+        }
+        return null;
     }
 
     [NotNull]
