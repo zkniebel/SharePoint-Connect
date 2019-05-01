@@ -1,0 +1,83 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>d66d4f85-6a8a-41e6-b5ee-d5949e2f1d2c</ProjectGuid>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Sitecore.Sharepoint.TDS.Deployment</SingleAssemblyName>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
+    <LegacyFileReplacement>false</LegacyFileReplacement>
+    <AssemblyName>Sitecore.Sharepoint.TDS.Deployment</AssemblyName>
+    <Name>Sitecore.Sharepoint.TDS.Deployment</Name>
+    <RootNamespace>Sitecore.Sharepoint.TDS.Deployment</RootNamespace>
+    <ManageRoles>False</ManageRoles>
+    <SitecoreDatabase>master</SitecoreDatabase>
+    <AssemblyStatus>Exclude</AssemblyStatus>
+    <SourceWebVirtualPath>/Sitecore.Sharepoint.Web.csproj</SourceWebVirtualPath>
+    <SourceWebProject>{fd0bf733-d0d3-4c00-a3d2-ef8a12841dc4}|Sitecore.Sharepoint.Web\Sitecore.Sharepoint.Web.csproj</SourceWebProject>
+    <SourceWebPhysicalPath>..\Sitecore.Sharepoint.Web</SourceWebPhysicalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <RecursiveDeployAction>Ignore</RecursiveDeployAction>
+    <SitecoreWebUrl>http://sitecoresharepointpoc.sitecore</SitecoreWebUrl>
+    <InstallSitecoreConnector>False</InstallSitecoreConnector>
+    <DisableFileDeployment>False</DisableFileDeployment>
+    <LightningDeployMode>False</LightningDeployMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <RecursiveDeployAction>Ignore</RecursiveDeployAction>
+  </PropertyGroup>
+  <ItemGroup>
+    <AssemblyAttributes Include="AssemblyFileVersion">
+      <Value>$(AssemblyFileVersion)</Value>
+    </AssemblyAttributes>
+    <AssemblyAttributes Include="AssemblyVersion">
+      <Value>$(AssemblyVersion)</Value>
+    </AssemblyAttributes>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sitecore.Sharepoint.Web\Sitecore.Sharepoint.Web.csproj">
+      <Project>{fd0bf733-d0d3-4c00-a3d2-ef8a12841dc4}</Project>
+      <Name>Sitecore.Sharepoint.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ExcludedAssemblies Include="HtmlAgilityPack.dll" />
+    <ExcludedAssemblies Include="Lucene.Net.dll" />
+    <ExcludedAssemblies Include="ICSharpCode.SharpZipLib.dll" />
+    <ExcludedAssemblies Include="Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <ExcludedAssemblies Include="Microsoft.Extensions.DependencyInjection.dll" />
+    <ExcludedAssemblies Include="Microsoft.Office.Client.Education.dll" />
+    <ExcludedAssemblies Include="Microsoft.Office.Client.Policy.dll" />
+    <ExcludedAssemblies Include="Microsoft.Office.Client.TranslationServices.dll" />
+    <ExcludedAssemblies Include="Microsoft.Online.SharePoint.Client.Tenant.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.DocumentManagement.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.Publishing.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.Runtime.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.Search.Applications.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.Search.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.Taxonomy.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.UserProfiles.dll" />
+    <ExcludedAssemblies Include="Microsoft.SharePoint.Client.WorkflowServices.dll" />
+    <ExcludedAssemblies Include="Microsoft.WindowsAzure.ServiceRuntime.dll" />
+    <ExcludedAssemblies Include="Newtonsoft.Json.dll" />
+    <ExcludedAssemblies Include="Sitecore.Client.dll" />
+    <ExcludedAssemblies Include="Sitecore.Kernel.dll" />
+    <ExcludedAssemblies Include="Sitecore.Logging.Client.dll" />
+    <ExcludedAssemblies Include="Sitecore.Logging.dll" />
+    <ExcludedAssemblies Include="Sitecore.NVelocity.dll" />
+    <ExcludedAssemblies Include="Sitecore.Zip.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" Condition="Exists('$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets')" />
+</Project>

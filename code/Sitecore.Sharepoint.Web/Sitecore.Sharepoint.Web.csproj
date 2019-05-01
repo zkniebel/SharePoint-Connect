@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <AssemblyName>Sitecore.Sharepoint.Web</AssemblyName>
@@ -20,6 +20,40 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="App_Config\Include\Sharepoint\Sitecore.Sharepoint.config" />
+    <None Remove="App_Data\AzureOverrideFiles\bin\sharepointclientcomponents_x64.msi" />
+    <None Remove="App_Data\AzureOverrideFiles\bin\Spif.cmd" />
+    <None Remove="css\sharepoint.css" />
+    <None Remove="Images\topsearchbutton.gif" />
+    <None Remove="script\jquery.hoverIntent.minified.js" />
+    <None Remove="script\sharepoint.js" />
+    <None Remove="sitecore\admin\UpdateIntegrationConfigData.aspx" />
+    <None Remove="sitecore\Images\disableScreen.png" />
+    <None Remove="sitecore\Images\fader.png" />
+    <None Remove="sitecore\Images\gridheadbg_blue.png" />
+    <None Remove="sitecore\shell\Applications\Sharepoint\Integration Wizard\IntegrationWizardForm.css" />
+    <None Remove="sitecore\shell\Applications\Sharepoint\Integration Wizard\IntegrationWizardForm.js" />
+    <None Remove="sitecore\shell\Applications\Sharepoint\Integration Wizard\IntegrationWizardForm.xml" />
+    <None Remove="sitecore\shell\Applications\Sharepoint\Integration Wizard\MappingEntryControl.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Config\Include\Sharepoint\Sitecore.Sharepoint.config" />
+    <Content Include="App_Data\AzureOverrideFiles\bin\sharepointclientcomponents_x64.msi" />
+    <Content Include="App_Data\AzureOverrideFiles\bin\Spif.cmd" />
+    <Content Include="css\sharepoint.css" />
+    <Content Include="Images\topsearchbutton.gif" />
+    <Content Include="script\jquery.hoverIntent.minified.js" />
+    <Content Include="script\sharepoint.js" />
+    <Content Include="sitecore\admin\UpdateIntegrationConfigData.aspx" />
+    <Content Include="sitecore\Images\disableScreen.png" />
+    <Content Include="sitecore\Images\fader.png" />
+    <Content Include="sitecore\Images\gridheadbg_blue.png" />
+    <Content Include="sitecore\shell\Applications\Sharepoint\Integration Wizard\IntegrationWizardForm.css" />
+    <Content Include="sitecore\shell\Applications\Sharepoint\Integration Wizard\IntegrationWizardForm.js" />
+    <Content Include="sitecore\shell\Applications\Sharepoint\Integration Wizard\IntegrationWizardForm.xml" />
+    <Content Include="sitecore\shell\Applications\Sharepoint\Integration Wizard\MappingEntryControl.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sitecore.Sharepoint.Common\Sitecore.Sharepoint.Common.csproj" />
